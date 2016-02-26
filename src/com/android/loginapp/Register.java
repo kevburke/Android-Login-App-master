@@ -93,7 +93,7 @@ public class Register extends Activity {
     /**
      * Handles the registration process.
      *
-     * @param v
+     *
      */
     private void RegisterMe(View v) {
         //Get user details.
@@ -182,13 +182,13 @@ public class Register extends Activity {
         editor.putString("username", username);
         editor.putString("password", password);
         editor.commit();
+        Toast.makeText(getApplicationContext(), "UsrName "+ username + " pass "+ password,
+                Toast.LENGTH_LONG).show();
     }
 
     /**
      * Hashes the password with MD5.
      *
-     * @param s
-     * @return
      */
     private String md5(String s) {
         try {

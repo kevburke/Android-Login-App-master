@@ -21,7 +21,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * The main application activity which serves as a login page.
  *
- * @author Andrei
+ *
  */
 public class login extends Activity {
 
@@ -178,7 +178,8 @@ public class login extends Activity {
         if (theUser != null) {
             startManagingCursor(theUser);
             if (theUser.getCount() > 0) {
-                saveLoggedInUId(theUser.getLong(theUser.getColumnIndex(DatabaseAdapter.COL_ID)), thisUsername, thePassword.getText().toString());
+              //  saveLoggedInUId(theUser.getLong(theUser.getColumnIndex(DatabaseAdapter.COL_ID)), thisUsername, thePassword.getText().toString());
+                saveLoggedInUId(theUser.getLong(theUser.getColumnIndex(DatabaseAdapter.COL_ID)), thisUsername, thisPassword);
                 stopManagingCursor(theUser);
                 theUser.close();
                 Intent i = new Intent(v.getContext(), Helloworld.class);
@@ -278,7 +279,9 @@ public class login extends Activity {
             StringBuffer hexString = new StringBuffer();
             for (int i = 0; i < messageDigest.length; i++)
                 hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
-
+            Toast.makeText(getApplicationContext(),
+                    hexString.toString(),
+                    Toast.LENGTH_LONG).show();
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
             return s;
