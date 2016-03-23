@@ -23,6 +23,7 @@ import java.security.NoSuchAlgorithmException;
  *
  *
  */
+
 public class login extends Activity {
 
     public static final String MY_PREFS = "SharedPreferences";
@@ -159,12 +160,13 @@ public class login extends Activity {
             json.put("username",outUser);
             json.put("password",outPass);
 
-            String baseUrl = "http://192.168.1.5:8080/InputOutput";
+            String baseUrl = "http://192.168.1.4:8080/InputOutput";
 
             new HttpAsyncTask().execute(baseUrl, json.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
 
 
 
@@ -222,18 +224,64 @@ public class login extends Activity {
             JSONObject jsonResult = null;
             try {
                 jsonResult = new JSONObject(result);
+                JSONArray Jinjumbo = jsonResult.getJSONArray("jumbo");
+                JSONArray Jinnum = jsonResult.getJSONArray("num");
+                JSONArray Jinsex = jsonResult.getJSONArray("sex");
+                JSONArray Jindob = jsonResult.getJSONArray("dob");
+                JSONArray Jinname = jsonResult.getJSONArray("name");
+                JSONArray Jinstatus = jsonResult.getJSONArray("status");
+                JSONArray Jinbreed = jsonResult.getJSONArray("breed");
+                JSONArray Jindam = jsonResult.getJSONArray("dam");
+                JSONArray Jinsire = jsonResult.getJSONArray("sire");
+                JSONArray Jinreplacement = jsonResult.getJSONArray("replacement");
+                JSONArray Jinreplacement_maternal = jsonResult.getJSONArray("replacement_maternal");
+                JSONArray Jinterminal = jsonResult.getJSONArray("terminal");
+                JSONArray Jinreplacement_maternal_prog = jsonResult.getJSONArray("replacement_maternal_prog");
+                JSONArray Jindairy = jsonResult.getJSONArray("dairy");
+                JSONArray Jincalving_diff = jsonResult.getJSONArray("calving_diff");
+                JSONArray Jintrait_reliability = jsonResult.getJSONArray("trait_reliability");
 
+                String[] jumbo = new String[Jinjumbo.length()];
+                String[] num = new String[Jinjumbo.length()];
+                String[] sex = new String[Jinjumbo.length()];
+                String[] dob = new String[Jinjumbo.length()];
+                String[] name = new String[Jinjumbo.length()];
+                String[] status = new String[Jinjumbo.length()];
+                String[] breed = new String[Jinjumbo.length()];
+                String[] dam = new String[Jinjumbo.length()];
+                String[] sire = new String[Jinjumbo.length()];
+                String[] replacement = new String[Jinjumbo.length()];
+                String[] replacement_maternal = new String[Jinjumbo.length()];
+                String[] terminal = new String[Jinjumbo.length()];
+                String[] replacement_maternal_prog = new String[Jinjumbo.length()];
+                String[] dairy = new String[Jinjumbo.length()];
+                String[] calving_diff = new String[Jinjumbo.length()];
+                String[] trait_reliability = new String[Jinjumbo.length()];
 
-                JSONArray cows = jsonResult.getJSONArray("jumbo");
-                String[]cows2 = new String[cows.length()];
-                for (int i = 0; i <cows.length() ; i++) {
-                    cows2[i] = cows.getString(i);
-                   // System.out.println(cows2[i]);
+                for (int i = 0; i < Jinjumbo.length() ; i++) {
+
+                    jumbo[i] = Jinjumbo.getString(i);
+                    num[i] = Jinnum.getString(i);
+                    sex[i] = Jinsex.getString(i);
+                    dob[i] = Jindob.getString(i);
+                    name[i] = Jinname.getString(i);
+                    status[i] = Jinstatus.getString(i);
+                    breed[i] = Jinbreed.getString(i);
+                    dam [i] = Jindam.getString(i);
+                    sire[i] = Jinsire.getString(i);
+                    replacement[i] = Jinreplacement.getString(i);
+                    replacement_maternal[i] = Jinreplacement_maternal.getString(i);
+                    terminal[i] = Jinterminal.getString(i);
+                    replacement_maternal_prog[i] = Jinreplacement_maternal_prog.getString(i);
+                    dairy[i] = Jindairy.getString(i);
+                    calving_diff[i] = Jincalving_diff.getString(i);
+                    trait_reliability[i] = Jintrait_reliability.getString(i);
 
                 }
-                Toast.makeText(getApplicationContext(),
-                        cows2[0],
-                        Toast.LENGTH_SHORT).show();
+
+//                Toast.makeText(getApplicationContext(),
+//                        cows2[0],
+//                        Toast.LENGTH_SHORT).show();
 
 
             } catch (JSONException e) {
